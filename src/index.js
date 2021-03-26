@@ -54,11 +54,14 @@ function loadBreedOptions() {
 }
 
 function updatingBreedList(breeds) {
-    
+    // let option = document.querySelector('#breed-dropdown')
+    // option.innerHTML = breeds
     for (const property in breeds) {
         console.log(property)
         addBreed(property)
+      
     }
+
 }
 
 function addBreed(breed) {
@@ -78,7 +81,7 @@ function updateColor(event) {
 
 function selectBreedsStartingWith(letter) {
     updatingBreedList(breeds.filter(breed => breed.startsWith(letter)));
-    
+    breeds.push(letter) 
   }
 
 function addingBreedSelectListener() {
