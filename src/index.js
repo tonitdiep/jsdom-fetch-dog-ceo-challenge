@@ -48,7 +48,7 @@ function loadBreedOptions() {
         .then (response => response.json())
         .then(function(json){
             updatingBreedList(json.message);
-            addBreedSelectListener();
+            addingBreedSelectListener();
             // console.log(json.message);
         });
 }
@@ -75,12 +75,13 @@ function updateColor(event) {
     event.target.style.color = 'red';
 }
 
+
 function selectBreedsStartingWith(letter) {
     updatingBreedList(breeds.filter(breed => breed.startsWith(letter)));
     
   }
 
-function addBreedSelectListener() {
+function addingBreedSelectListener() {
     let breedDropdown = document.querySelector('#breed-dropdown');
     breedDropdown.addEventListener('change', function(event) {
       selectBreedsStartingWith(event.target.value);
