@@ -68,7 +68,6 @@ function addBreedToDom(filterBreedList) {
     allBreeds.forEach(breed => breed.remove())
     filterBreedList.forEach(breed => addBreed(breed))
 
-
 }
 function addBreed(breed) {
     let ul = document.querySelector('#dog-breeds');
