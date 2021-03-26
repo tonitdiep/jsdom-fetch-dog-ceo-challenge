@@ -16,15 +16,10 @@ function loadImages() {
     .then(response => response.json())
     .then(json => { 
         
-        
-        
-        
-        
-        
-        
+            
     //   arrow notation ^  
         json.message.forEach(image => addImage(image))
-        console.log(json)
+        // console.log(json)
     });
 
 // function notation
@@ -52,19 +47,46 @@ function loadBreedOptions() {
     fetch(breedUrl)
         .then (response => response.json())
         .then(function(json){
-            console.log(json.message);
+            updatingBreedList(json.message);
+            addBreedSelectListener();
+            // console.log(json.message);
         });
 }
 
 function updatingBreedList(breeds) {
-    let ul = document.querySelector('#dog-breeds');
-    breeds.forEach(breed => addBreed(breed));
+    
+    for (const property in breeds) {
+        console.log(property)
+        addBreed(property)
+    }
 }
 
 function addBreed(breed) {
-
+    let ul = document.querySelector('#dog-breeds');
+    let li = document.createElement('li')
+    li.innerHTML = breed
+    li.style.cursor = 'pointer';
+    ul.appendChild(li)
+    li.addEventListener('click', updateColor);
 
 }
+
+function updateColor(event) {
+    event.target.style.color = 'red';
+}
+
+function selectBreedsStartingWith(letter) {
+    updatingBreedList(breeds.filter(breed => breed.startsWith(letter)));
+    
+  }
+
+function addBreedSelectListener() {
+    let breedDropdown = document.querySelector('#breed-dropdown');
+    breedDropdown.addEventListener('change', function(event) {
+      selectBreedsStartingWith(event.target.value);
+
+    });
+  }
 // console.log(json)
 
 // fetch('http://api.open-notify.org/astros.json') 
